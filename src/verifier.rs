@@ -22,7 +22,7 @@ fn verify_sumcheck_step<C: GKRConfig>(
     randomness_vec: &mut Vec<C::ChallengeField>,
     sp: &VerifierScratchPad<C>,
 ) -> bool {
-    let mut ps = vec![];
+    let mut ps = Vec::with_capacity(degree + 1);
     for i in 0..(degree + 1) {
         ps.push(proof.get_next_and_step());
         transcript.append_field_element::<C::ChallengeField>(&ps[i]);
